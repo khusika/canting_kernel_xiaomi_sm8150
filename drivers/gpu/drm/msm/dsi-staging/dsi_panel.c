@@ -636,6 +636,9 @@ static int dsi_panel_update_backlight(struct dsi_panel *panel,
 
 	dsi = &panel->mipi_device;
 
+	if (panel->bl_config.bl_inverted_dbv)
+		bl_lvl = (((bl_lvl & 0xff) << 8) | (bl_lvl >> 8));
+
 	if (panel->bl_config.dcs_type_ss)
 		rc = mipi_dsi_dcs_set_display_brightness_ss(dsi, bl_lvl);
 	else
@@ -2542,6 +2545,9 @@ static int dsi_panel_parse_bl_config(struct dsi_panel *panel)
 	rc = dsi_panel_parse_fod_dim_lut(panel, utils);
 	if (rc)
 		pr_err("[%s failed to parse fod dim lut\n", panel->name);
+
+	panel->bl_config.bl_inverted_dbv = utils->read_bool(utils->data,
+		"qcom,mdss-dsi-bl-inverted-dbv");
 
 	if (panel->bl_config.type == DSI_BACKLIGHT_PWM) {
 		rc = dsi_panel_parse_bl_pwm_config(panel);
