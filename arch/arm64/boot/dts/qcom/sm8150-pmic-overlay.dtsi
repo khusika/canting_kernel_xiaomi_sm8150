@@ -131,7 +131,6 @@
 		};
 	};
 
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 	otg_vbus_boost {
 		otg_vbus_boost_default: otg_vbus_boost_default {
 			pins = "gpio12";
@@ -152,7 +151,6 @@
 			input-enable;
 		};
 	};
-#endif
 };
 
 &usb0 {

@@ -13,9 +13,6 @@
 /dts-v1/;
 /plugin/;
 
-#define CONFIG_MACH_XIAOMI_SM8150
-#define CONFIG_MACH_XIAOMI_VAYU
-
 #include <dt-bindings/clock/qcom,gcc-sm8150.h>
 #include <dt-bindings/clock/qcom,camcc-sm8150.h>
 #include <dt-bindings/clock/qcom,rpmh.h>

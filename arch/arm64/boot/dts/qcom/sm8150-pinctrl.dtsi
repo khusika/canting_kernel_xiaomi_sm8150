@@ -400,9 +400,7 @@
 					pins = "gpio122";
 					drive-strength = <2>;
 					bias-pull-down;
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 					input-enable;
-#endif
 				};
 			};
 		};
@@ -416,12 +414,8 @@
 				config {
 					pins = "gpio54";
 					drive-strength = <2>;
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 					bias-disable;
 					output-low;
-#else
-					bias-pull-down;
-#endif
 				};
 			};
 		};
@@ -440,7 +434,7 @@
 				};
 			};
 
-#ifndef CONFIG_MACH_XIAOMI_SM8150
+			/*
 			pcie0_perst_default: pcie0_perst_default {
 				mux {
 					pins = "gpio35";
@@ -453,8 +447,9 @@
 					bias-pull-down;
 				};
 			};
+			*/
 
-			pcie0_wake_default: pcie0_wake_default {
+/*			pcie0_wake_default: pcie0_wake_default {
 				mux {
 					pins = "gpio37";
 					function = "gpio";
@@ -466,7 +461,7 @@
 					bias-pull-up;
 				};
 			};
-#endif
+*/
 		};
 
 		pcie1 {
@@ -1284,20 +1279,12 @@
 				/* active state */
 				mux {
 					/* 41: NFC ENABLE 42:ESE Enable */
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 					pins = "gpio41", "gpio48";
-#else
-					pins = "gpio41", "gpio42", "gpio48";
-#endif
 					function = "gpio";
 				};
 
 				config {
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 					pins = "gpio41", "gpio48";
-#else
-					pins = "gpio41", "gpio42", "gpio48";
-#endif
 					drive-strength = <2>; /* 2 MA */
 					bias-pull-up;
 				};
@@ -1307,20 +1294,12 @@
 				/* sleep state */
 				mux {
 					/* 41: NFC ENABLE 42:ESE Enable */
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 					pins = "gpio41", "gpio48";
-#else
-					pins = "gpio41", "gpio42", "gpio48";
-#endif
 					function = "gpio";
 				};
 
 				config {
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 					pins = "gpio41", "gpio48";
-#else
-					pins = "gpio41", "gpio42", "gpio48";
-#endif
 					drive-strength = <2>; /* 2 MA */
 					bias-disable;
 				};
@@ -2618,7 +2597,7 @@
 		};
 
 		tert_tdm {
-#ifdef CONFIG_MACH_XIAOMI_SM8150
+
 			cs35l41_int_default: cs35l41_int_default {
 				mux {
 					pins = "gpio10";
@@ -2631,7 +2610,7 @@
 					input-enable;
 				};
 			};
-#endif
+
 			tert_tdm_sleep: tert_tdm_sleep {
 				mux {
 					pins = "gpio133", "gpio134";
@@ -3892,7 +3871,6 @@
 			};
 		};
 
-#ifdef CONFIG_MACH_XIAOMI_SM8150
 		/* USB C analog configuration */
 		wcd_usbc_analog_en1 {
 			wcd_usbc_analog_en1_idle: wcd_usbc_ana_en1_idle {
@@ -3949,7 +3927,6 @@
 				};
 			};
 		};
-#endif
 
 		fsa_usbc_ana_en_n@100 {
 			fsa_usbc_ana_en: fsa_usbc_ana_en {
